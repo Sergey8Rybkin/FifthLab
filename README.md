@@ -91,4 +91,40 @@ public class CheckConnectYG : MonoBehaviour
 Так-же проверим в браузере где я не вошёл в аккаунт. Как мы можем увидеть, Яндекс проверил мою авторизацию и просит войти в аккаунт, чтобы достижения сохранялись
 ![image](https://user-images.githubusercontent.com/100475554/203968701-78fac19b-a634-4139-8320-867fc5c870c5.png)
 
+Займёмся сохранением данных игрока в системе Яндекс игр. Для этого в плагине есть скрипт SavesYG, в нём нам нужно инициализировать переменную *score* в которую мы будем записывать и сохранять прогресс игрока. Теперь осталось только сделать связку сохранения очков нашего проекта и новой переменной. Для этого нам необходимо в скрипте подсчёта очков **DragonPicker** добавить следующие строки кода.
+
+Для проверки подключения YandexSDK и подключения UI в который мы передаём очки.
+```c#
+private void OnEnable() => YandexGame.GetDataEvent += GetLoadSave;
+   
+private void OnDisable() => YandexGame.GetDataEvent -= GetLoadSave;
+
+public TextMeshProUGUI scoreGT;
+```
+
+В старт мы добавляем проверку подключения и выводим сохранённые данные об игроке
+```c#
+if (YandexGame.SDKEnabled == true) 
+        {
+            GetLoadSave();
+        }
+```
+Создаём функцию для отображения данных об игроке
+```c#
+public void GetLoadSave()
+    {
+        Debug.Log(YandexGame.savesData.score);
+    }
+```
+И метод сохраняющий данные в облако Яндекс Игр
+```c#
+public void UserSave( int currentScore)
+    {
+        YandexGame.savesData.score = currentScore;
+        YandexGame.SaveProgress();
+    }
+
+```
+При выгрузке нового билда так-же не забываем подключить облачные сохранения.
+![image](https://user-images.githubusercontent.com/100475554/203980525-83621554-99e7-46d8-bbae-e2a0f299d654.png)
 
