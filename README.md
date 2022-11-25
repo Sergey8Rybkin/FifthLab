@@ -129,4 +129,6 @@ public void UserSave( int currentScore)
 ![image](https://user-images.githubusercontent.com/100475554/203980525-83621554-99e7-46d8-bbae-e2a0f299d654.png)
 
 При тестировании, в консоли можно увидеть что за две сессии, сначала сохранились данные о 10 очках, а после второй попытки у нас сохранились 5 очков
+
 ![image](https://user-images.githubusercontent.com/100475554/203982616-6d3355a0-55e0-4633-931d-d3d6dea7b6d1.png)
+
