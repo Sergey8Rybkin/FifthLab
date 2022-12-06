@@ -132,3 +132,17 @@ public void UserSave( int currentScore)
 
 ![image](https://user-images.githubusercontent.com/100475554/203982616-6d3355a0-55e0-4633-931d-d3d6dea7b6d1.png)
 
+Ещё одним дополнением к интерфейсу игрока будет приветствие его по имени. 
+P.S. Я решил не делать имя игрока сверху нашего мага, тк считаю что это бессмысленно для игровой сцены. Игроку никак не нужно в ней сигнализировать о том где его персонаж, он управляет щитами и использует заклинания не зависимо от положения модели.
+
+Я добавил новый текстовый объект на сцену, назвал его WelcomePlayer. Теперь нам нужно в скрипте подключиться к ЯндексSDK, и передать из него имя человека играющего в игру.
+
+### Результат в игровом окне
+![unknown_2022 12 06-22 29_1](https://user-images.githubusercontent.com/100475554/205981675-833daf9d-d56e-4200-b76f-91b8ac1326ce.gif)
+
+Ну и строки кода необходимые нам для этого. Прописал всё в скрипте CheckConnectYG, там же мы реализовывали лучшее количество очков игрока немнго раньше.
+```c#
+GameObject playerNamePrefabGUI = GameObject.Find("WelcomePlayer");
+    playerName = playerNamePrefabGUI.GetComponent<TextMeshProUGUI>();
+    playerName.text =  "Hello " + YandexGame.playerName;
+```
