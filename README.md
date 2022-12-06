@@ -175,6 +175,8 @@ YandexGame.NewLeaderboardScores("BestPlayerScore", int.Parse(scoreGT.text));
 ### Вот так это выглядит в Unity
 ![unknown_2022 12 06-23 19_1](https://user-images.githubusercontent.com/100475554/205990941-b1414418-b912-4b74-8466-b99c13966967.gif)
 
+## Проблема
+
 С кодом же у меня возникли трудности. Я перенёс код из задания, но у меня почему-то слетают настройки индекса и игра просто не хочет открывать нулевую сцену.
 
 Код внутри **CheckConnectYG** который скорее всего и вызывает ошибки исходя из информации в консоли
@@ -215,3 +217,6 @@ public void UserSave(int currentScore, int currentBestScore, string[] currentAch
         YandexGame.SaveProgress();
     }
 ```
+
+## Задание 2
+
