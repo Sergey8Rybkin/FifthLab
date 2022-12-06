@@ -164,3 +164,7 @@ YandexGame.NewLeaderboardScores("BestPlayerScore", int.Parse(scoreGT.text));
 ![image](https://user-images.githubusercontent.com/100475554/205984871-d87b37b4-7eb3-46ae-9167-0b1958c9eb8d.png)
 
 ![image](https://user-images.githubusercontent.com/100475554/205984915-a5f08e61-6e4b-4e6a-b27c-d695de34043b.png)
+
+На данный момент тестирование таблицы довольно ограничено, тк наша игра ещё в виде черновика, но мы уже можем увидеть что данные появляются в списке лучших игроков
+
+![image](https://user-images.githubusercontent.com/100475554/205985338-6dfceb59-fd80-4f24-8b87-8c4dd8867c90.png)
