@@ -172,7 +172,46 @@ YandexGame.NewLeaderboardScores("BestPlayerScore", int.Parse(scoreGT.text));
 Создадим другой элемент увлечения пользователя. Достижения не мало важный аспект в жизни многих геймеров. Есть целые рубрики о том как сложно получить все достижения в игре, так называемая платина. Попробуем добавить первую ачивку в нашу игру.
 Сперва создадим для неё пространство на нашем начальном экране. Для этого можно сделать дупликат "Настроек" которые мы делали лабораторной ранее. Останется только настроить работу кнопок и оставить пространство под будующие достижения.
 
-![image](https://user-images.githubusercontent.com/100475554/205989333-7b1b081a-99a4-4cd6-952d-6e3be4489d6c.png)
+### Вот так это выглядит в Unity
+![unknown_2022 12 06-23 19_1](https://user-images.githubusercontent.com/100475554/205990941-b1414418-b912-4b74-8466-b99c13966967.gif)
 
+С кодом же у меня возникли трудности. Я перенёс код из задания, но у меня почему-то слетают настройки индекса и игра просто не хочет открывать нулевую сцену.
 
-![image](https://user-images.githubusercontent.com/100475554/205988731-13e9ccf5-c4c9-464b-8af6-3d1babc6508f.png)
+Код внутри **CheckConnectYG** который скорее всего и вызывает ошибки исходя из информации в консоли
+```c#
+if ((YandexGame.savesData.achievement)[0] == null & !GameObject.Find("AchievementsList"))
+    {
+    
+    }
+    else
+    {
+        foreach (string value in YandexGame.savesData.achievement)
+        {
+            GameObject.Find("AchievementsList").GetComponent<TextMeshProUGUI>().text = GameObject.Find("AchievementsList").GetComponent<TextMeshProUGUI>().text + value + "\n";
+        }
+    }
+```
+
+Код в DragonPicker отвечающий за обработку того когда нужно дать нашему игроку достижение
+
+```c#
+string[] achievementList;
+achievementList = YandexGame.savesData.achievement;
+achievementList[0] = "Аккуратнее со щитами";
+UserSave(int.Parse(scoreGT.text),YandexGame.savesData.bestScore,achievementList);
+```
+
+Обновлённый метод **UserSave**
+
+```c#
+public void UserSave(int currentScore, int currentBestScore, string[] currentAchievement)
+    {
+        YandexGame.savesData.score = currentScore;
+        if (currentScore > currentBestScore)
+        {
+            YandexGame.savesData.bestScore = currentScore;
+        }
+        YandexGame.savesData.achievement = currentAchievement;
+        YandexGame.SaveProgress();
+    }
+```
